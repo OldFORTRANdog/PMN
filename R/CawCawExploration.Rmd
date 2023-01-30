@@ -1,0 +1,32 @@
+---
+title: "Caw Caw PMN data exploration"
+output: html_notebook
+---
+
+Data were downloaded from the Phytoplankton Monitoring Network (PMN) map viewer 
+and download tool (https://www.ncei.noaa.gov/maps/phytoplankton/viewer.htm) and 
+Caw Caw data were extracted into a Geopackage file.
+
+```{r install_libraries}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(sf)
+  library(here)
+})
+```
+
+Read in the data
+```{r read_data}
+in_name <- here("data","CawCaw.gpkg")
+# in_name <- here("data","all_PMN.gpkg")
+
+df_sf <- st_read(in_name)
+```
+Print basic stats on the different fields
+
+```{r some_stats}
+
+summary(df_sf)
+table(df_sf$spec_name)
+```
+
